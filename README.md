@@ -29,3 +29,16 @@
 簡單又高效！🎉
 
 確保替換過程順利無誤，讓你的資料遷移變得輕鬆愉快！🌟  
+
+## 掃描目錄處理所有 CSV：
+```bash
+python replace_id.py
+```
+當 input_filename 為 None 時，掃描腳本所在目錄的 *.csv 檔案（會跳過 *-out.csv）。
+
+## 只處理指定 CSV（多個檔案）：
+```bash
+python replace_id.py activity_day_202511181636.csv file_info_202511171011.csv
+```
+會建立輸出資料夾（例如 202511181701）並在裡面放上 *-out.csv 檔案。
+

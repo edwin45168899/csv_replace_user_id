@@ -10,12 +10,16 @@
 ## 環境配置
 - Python 3.8.0
 
+⚠️ 注意：`run_sql.py` 需要以下環境變數都已設定才能執行：`DB_USER`, `DB_PASS`, `DB_HOST`, `DB_PORT`, `DB_NAME`, `USER_ID`。
+若任一變數缺失，程式會中止並顯示錯誤。
+
 ---
 
 ## 說明
 
 想像一下，你有正式環境的統計資料，想要安全地轉移到測試環境中。📊
 
+ 
 首先，將正式環境的資料匯出為 CSV 格式。📤
 
 ![234_export](./images/234_export.png)
@@ -63,4 +67,43 @@ python run_sql.py
 安裝 `pip install python-dotenv` 可以讀取 `.env` 檔案  
 參考環境變數設定 [.env.simple](.env.simple) 檔案內容  
 沒用過 .env 你可以參考文件: [env](./docs/env.md)  
+
+### 範例
+如果你使用 `.env` 檔案，內容像下面這樣：  
+```dotenv
+DB_USER=my_user
+DB_PASS=my_password
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_NAME=your_database_name
+```
+
+在 Windows (cmd.exe) 下執行：  
+```cmd
+pip install -r requirements.txt
+python run_sql.py
+```
+
+若不想使用 `.env`，可以直接在命令列先設定環境變數再執行：  
+```cmd
+set DB_USER=my_user
+set DB_PASS=my_password
+set DB_NAME=your_database_name
+python run_sql.py
+```
+
+程式會嘗試連線 MySQL 並顯示 MySQL 版本號；若無法連線，會顯示錯誤資訊並以非零碼退出。  
+
+### 自動替換 SQL 內的 USER_ID
+`run_sql.py` 會搜尋專案內的 `./sql` 資料夾，依字母順序讀取所有 `*.sql` 檔案；  
+在執行前會把 SQL 檔中的文字 `##USER_ID##` 以 `.env` 或環境變數 `USER_ID` 的值替換再執行。每個 SQL 檔案會在執行後 commit。  
+
+注意：目前採用簡單的 `;` 分割 SQL 指令，若 SQL 裡有比較複雜的內容（例如在字串內有分號），請特別注意或先做測試。  
+
+請務必在 `.env` 或環境變數中設定 `DB_NAME`，`run_sql.py` 不會自動從 SQL 檔中偵測要執行的資料庫；若未設定 `DB_NAME`，程式會立即中止並提示設定。  
+
+---
+
+## ✅ 如何檢查測試檔案與 run_sql.py 的邏輯，接下來提供完整、可執行的測試步驟（含故障排除與進階選項）。
+參考: [test](./docs/test.md)  
 

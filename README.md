@@ -107,3 +107,6 @@ python run_sql.py
 ## ✅ 如何檢查測試檔案與 run_sql.py 的邏輯，接下來提供完整、可執行的測試步驟（含故障排除與進階選項）。
 參考: [test](./docs/test.md)  
 
+## 如何取得原始資料
+[統計要匯出的所有統計資料](./docs/get_data.md)  
+[統計要匯出的統計資料筆數](./docs/get_data_count.md)  

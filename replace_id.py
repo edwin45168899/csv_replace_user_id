@@ -21,7 +21,9 @@ USER_ID_MAPPING = {
     1478: 498,
     1069: 61,
     2793: 490,
-    3283: 492
+    3283: 492,
+    7351: 1238,
+    9567: 1239
 }
 # 針對置換邏輯，將映射表的鍵/值轉為字串，以便處理 CSV 檔案中可能為字串的 user_id
 USER_ID_MAPPING_STR = {str(k): str(v) for k, v in USER_ID_MAPPING.items()}

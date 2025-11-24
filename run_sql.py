@@ -111,14 +111,19 @@ try:
 
                 # 替換代碼 (Token) ##USER_ID##
                 sql_text = raw_sql.replace("##USER_ID##", user_id)
+                
                 # 算出今年的年份                
                 current_year = datetime.now().year
                 sql_text = sql_text.replace("##YEAR##", str(current_year))
+                
                 # 計算出今天的年月日，格式為 YYYY-MM-DD
                 today_str = datetime.now().strftime("%Y-%m-%d")
+                sql_text = sql_text.replace("##TODAY##", today_str)
+
                 # 計算出今天第幾周
                 now = datetime.now()
                 current_week = get_custom_week_number(now.date())
+                sql_text = sql_text.replace("##WEEK##", str(current_week))
 
                 print(f"  計算出 ##YEAR## => {current_year} , ##TODAY## => {today_str} , ##WEEK## => {current_week} ")
 

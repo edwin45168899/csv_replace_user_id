@@ -1,5 +1,5 @@
-INSERT INTO
-    activity_day_weight_training_online (
+INSERT
+    IGNORE INTO activity_day_weight_training_online (
         user_id,
         week_num,
         day_num,
